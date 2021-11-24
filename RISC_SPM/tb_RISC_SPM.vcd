@@ -1,0 +1,1093 @@
+$date
+	Thu Nov 11 12:44:41 2021
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_RISC_SPM $end
+$var wire 8 ! word1 [7:0] $end
+$var wire 8 " word10 [7:0] $end
+$var wire 8 # word11 [7:0] $end
+$var wire 8 $ word12 [7:0] $end
+$var wire 8 % word128 [7:0] $end
+$var wire 8 & word129 [7:0] $end
+$var wire 8 ' word13 [7:0] $end
+$var wire 8 ( word130 [7:0] $end
+$var wire 8 ) word131 [7:0] $end
+$var wire 8 * word132 [7:0] $end
+$var wire 8 + word133 [7:0] $end
+$var wire 8 , word134 [7:0] $end
+$var wire 8 - word135 [7:0] $end
+$var wire 8 . word136 [7:0] $end
+$var wire 8 / word137 [7:0] $end
+$var wire 8 0 word138 [7:0] $end
+$var wire 8 1 word139 [7:0] $end
+$var wire 8 2 word14 [7:0] $end
+$var wire 8 3 word140 [7:0] $end
+$var wire 8 4 word2 [7:0] $end
+$var wire 8 5 word255 [7:0] $end
+$var wire 8 6 word3 [7:0] $end
+$var wire 8 7 word4 [7:0] $end
+$var wire 8 8 word5 [7:0] $end
+$var wire 8 9 word6 [7:0] $end
+$var wire 8 : word7 [7:0] $end
+$var wire 8 ; word8 [7:0] $end
+$var wire 8 < word9 [7:0] $end
+$var wire 1 = word0 $end
+$var wire 1 > clk $end
+$var reg 9 ? k [8:0] $end
+$var reg 1 @ rst $end
+$scope module M1 $end
+$var reg 1 > clock $end
+$upscope $end
+$scope module M2 $end
+$var wire 2 A Sel_bus_2_mux [1:0] $end
+$var wire 1 > clk $end
+$var wire 1 @ rst $end
+$var wire 1 B zero $end
+$var wire 1 C write $end
+$var wire 3 D sel_bus_1_mux [2:0] $end
+$var wire 8 E mem_word [7:0] $end
+$var wire 1 F load_add_R $end
+$var wire 1 G load_Reg_Z $end
+$var wire 1 H load_Reg_Y $end
+$var wire 1 I load_R3 $end
+$var wire 1 J load_R2 $end
+$var wire 1 K load_R1 $end
+$var wire 1 L load_R0 $end
+$var wire 1 M load_PC $end
+$var wire 1 N load_IR $end
+$var wire 8 O instruction [7:0] $end
+$var wire 1 P inc_PC $end
+$var wire 8 Q bus_1 [7:0] $end
+$var wire 8 R address [7:0] $end
+$scope module M0_Processor $end
+$var wire 1 > clk $end
+$var wire 1 S inc_pc $end
+$var wire 1 T load_pc $end
+$var wire 1 @ rst $end
+$var wire 2 U sel_bus_2_mux [1:0] $end
+$var wire 1 B zflag $end
+$var wire 3 V sel_bus_1_mux [2:0] $end
+$var wire 4 W opcode [3:0] $end
+$var wire 8 X mem_word [7:0] $end
+$var wire 1 F load_add_R $end
+$var wire 1 G load_Reg_Z $end
+$var wire 1 H load_Reg_Y $end
+$var wire 1 I load_R3 $end
+$var wire 1 J load_R2 $end
+$var wire 1 K load_R1 $end
+$var wire 1 L load_R0 $end
+$var wire 1 M load_PC $end
+$var wire 1 N load_IR $end
+$var wire 8 Y instruction [7:0] $end
+$var wire 1 P inc_PC $end
+$var wire 8 Z bus_2 [7:0] $end
+$var wire 8 [ bus_1 [7:0] $end
+$var wire 1 \ alu_zero_flag $end
+$var wire 8 ] alu_out [7:0] $end
+$var wire 8 ^ address [7:0] $end
+$var wire 8 _ Y_value [7:0] $end
+$var wire 8 ` R3_out [7:0] $end
+$var wire 8 a R2_out [7:0] $end
+$var wire 8 b R1_out [7:0] $end
+$var wire 8 c R0_out [7:0] $end
+$var wire 8 d PC_count [7:0] $end
+$scope module ALU $end
+$var wire 4 e sel [3:0] $end
+$var wire 8 f data_2 [7:0] $end
+$var wire 8 g data_1 [7:0] $end
+$var wire 1 \ alu_zero_flag $end
+$var reg 8 h alu_out [7:0] $end
+$upscope $end
+$scope module Add_R $end
+$var wire 1 > clk $end
+$var wire 1 @ rst $end
+$var wire 1 F load $end
+$var wire 8 i data_in [7:0] $end
+$var reg 8 j data_out [7:0] $end
+$upscope $end
+$scope module IR $end
+$var wire 1 > clk $end
+$var wire 1 @ rst $end
+$var wire 1 N load $end
+$var wire 8 k data_in [7:0] $end
+$var reg 8 l data_out [7:0] $end
+$upscope $end
+$scope module Mux_1 $end
+$var wire 3 m sel [2:0] $end
+$var wire 8 n mux_out [7:0] $end
+$var wire 8 o data_e [7:0] $end
+$var wire 8 p data_d [7:0] $end
+$var wire 8 q data_c [7:0] $end
+$var wire 8 r data_b [7:0] $end
+$var wire 8 s data_a [7:0] $end
+$upscope $end
+$scope module Mux_2 $end
+$var wire 8 t data_a [7:0] $end
+$var wire 8 u data_b [7:0] $end
+$var wire 2 v sel [1:0] $end
+$var wire 8 w mux_out [7:0] $end
+$var wire 8 x data_c [7:0] $end
+$upscope $end
+$scope module PC $end
+$var wire 1 > clk $end
+$var wire 8 y data_in [7:0] $end
+$var wire 1 S inc_PC $end
+$var wire 1 T load_PC $end
+$var wire 1 @ rst $end
+$var reg 8 z count [7:0] $end
+$upscope $end
+$scope module R0 $end
+$var wire 1 > clk $end
+$var wire 8 { data_in [7:0] $end
+$var wire 1 @ rst $end
+$var wire 1 L load $end
+$var reg 8 | data_out [7:0] $end
+$upscope $end
+$scope module R1 $end
+$var wire 1 > clk $end
+$var wire 8 } data_in [7:0] $end
+$var wire 1 @ rst $end
+$var wire 1 K load $end
+$var reg 8 ~ data_out [7:0] $end
+$upscope $end
+$scope module R2 $end
+$var wire 1 > clk $end
+$var wire 8 !" data_in [7:0] $end
+$var wire 1 @ rst $end
+$var wire 1 J load $end
+$var reg 8 "" data_out [7:0] $end
+$upscope $end
+$scope module R3 $end
+$var wire 1 > clk $end
+$var wire 8 #" data_in [7:0] $end
+$var wire 1 @ rst $end
+$var wire 1 I load $end
+$var reg 8 $" data_out [7:0] $end
+$upscope $end
+$scope module Reg_Y $end
+$var wire 1 > clk $end
+$var wire 8 %" data_in [7:0] $end
+$var wire 1 @ rst $end
+$var wire 1 H load $end
+$var reg 8 &" data_out [7:0] $end
+$upscope $end
+$scope module Reg_Z $end
+$var wire 1 > clk $end
+$var wire 1 \ data_in $end
+$var wire 1 @ rst $end
+$var wire 1 G load $end
+$var reg 1 B data_out $end
+$upscope $end
+$upscope $end
+$scope module M1_Controller $end
+$var wire 1 > clk $end
+$var wire 8 '" instruction [7:0] $end
+$var wire 1 @ rst $end
+$var wire 2 (" sel_bus_2_mux [1:0] $end
+$var wire 1 B zero $end
+$var wire 2 )" src [1:0] $end
+$var wire 3 *" sel_bus_1_mux [2:0] $end
+$var wire 4 +" opcode [3:0] $end
+$var wire 2 ," dest [1:0] $end
+$var reg 1 -" err_flag $end
+$var reg 1 P inc_PC $end
+$var reg 1 N load_IR $end
+$var reg 1 M load_PC $end
+$var reg 1 L load_R0 $end
+$var reg 1 K load_R1 $end
+$var reg 1 J load_R2 $end
+$var reg 1 I load_R3 $end
+$var reg 1 H load_Reg_Y $end
+$var reg 1 G load_Reg_Z $end
+$var reg 1 F load_add_R $end
+$var reg 4 ." next_state [3:0] $end
+$var reg 1 /" sel_ALU $end
+$var reg 1 0" sel_PC $end
+$var reg 1 1" sel_R0 $end
+$var reg 1 2" sel_R1 $end
+$var reg 1 3" sel_R2 $end
+$var reg 1 4" sel_R3 $end
+$var reg 1 5" sel_bus_1 $end
+$var reg 1 6" sel_mem $end
+$var reg 4 7" state [3:0] $end
+$var reg 1 C write $end
+$scope begin output_and_next_state $end
+$upscope $end
+$scope begin state_transitions $end
+$upscope $end
+$upscope $end
+$scope module M2_MEM $end
+$var wire 8 8" address [7:0] $end
+$var wire 1 > clk $end
+$var wire 8 9" data_in [7:0] $end
+$var wire 8 :" data_out [7:0] $end
+$var wire 1 C write $end
+$upscope $end
+$upscope $end
+$scope begin Flush_Memory $end
+$upscope $end
+$scope begin Load_program $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx :"
+bx 9"
+bx 8"
+bx 7"
+x6"
+x5"
+x4"
+x3"
+x2"
+x1"
+x0"
+x/"
+bx ."
+x-"
+bx ,"
+bx +"
+bx *"
+bx )"
+bz ("
+bx '"
+bx &"
+bx %"
+bx $"
+bx #"
+bx ""
+bx !"
+bx ~
+bx }
+bx |
+bx {
+bx z
+bx y
+bx x
+bx w
+bz v
+bx u
+bx t
+bx s
+bx r
+bx q
+bx p
+bx o
+bx n
+bx m
+bx l
+bx k
+bx j
+bx i
+bx h
+bx g
+bx f
+bx e
+bx d
+bx c
+bx b
+bx a
+bx `
+bx _
+bx ^
+bx ]
+x\
+bx [
+bx Z
+bx Y
+bx X
+bx W
+bx V
+bz U
+zT
+zS
+bx R
+bx Q
+xP
+bx O
+xN
+xM
+xL
+xK
+xJ
+xI
+xH
+xG
+xF
+bx E
+bx D
+xC
+xB
+bz A
+x@
+bx ?
+0>
+x=
+bx <
+bx ;
+bx :
+bx 9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+bx -
+bx ,
+bx +
+bx *
+bx )
+bx (
+bx '
+bx &
+bx %
+bx $
+bx #
+bx "
+bx !
+$end
+#2000
+1\
+b0 ]
+b0 h
+b0 t
+b1 ."
+0-"
+0C
+06"
+0/"
+05"
+0P
+0G
+0H
+0F
+0N
+0M
+0I
+0J
+0K
+0L
+00"
+04"
+03"
+02"
+01"
+b0 +"
+b0 )"
+b0 ,"
+b0 W
+b0 e
+b0 7"
+b0 c
+b0 s
+b0 |
+b0 b
+b0 r
+b0 ~
+b0 a
+b0 q
+b0 ""
+b0 `
+b0 p
+b0 $"
+b0 _
+b0 g
+b0 &"
+0B
+b0 E
+b0 X
+b0 x
+b0 :"
+b0 R
+b0 ^
+b0 j
+b0 8"
+b0 O
+b0 Y
+b0 l
+b0 '"
+b0 d
+b0 o
+b0 z
+0=
+b0 5
+b0 3
+b0 1
+b0 0
+b0 /
+b0 .
+b0 -
+b0 ,
+b0 +
+b0 *
+b0 )
+b0 (
+b0 &
+b0 %
+b0 2
+b0 '
+b0 $
+b0 #
+b0 "
+b0 <
+b0 ;
+b0 :
+b0 9
+b0 8
+b0 7
+b0 6
+b0 4
+b0 !
+b100000000 ?
+0@
+#5000
+b1001 3
+b11110000 1
+b10001011 ,
+b10 (
+b1 &
+b110 %
+b10001100 2
+b1110011 '
+b11011 $
+b10000110 #
+b10000000 "
+b100001 <
+b10000001 ;
+b1010000 :
+b10000000 9
+b1010001 8
+b10000011 7
+b1010011 6
+b10000010 4
+b1010010 !
+#10000
+1>
+#12000
+1@
+#20000
+0>
+#30000
+b0 Q
+b0 [
+b0 f
+b0 n
+b0 u
+b0 9"
+b100 D
+b100 V
+b100 m
+b100 *"
+1F
+15"
+10"
+b10 ."
+b1 7"
+1>
+#40000
+0>
+#50000
+bx Q
+bx [
+bx f
+bx n
+bx u
+bx 9"
+bx D
+bx V
+bx m
+bx *"
+1P
+1N
+16"
+b11 ."
+05"
+0F
+00"
+b10 7"
+bx E
+bx X
+bx x
+bx :"
+bx R
+bx ^
+bx j
+bx 8"
+1>
+#60000
+0>
+#70000
+b1011 ."
+06"
+0P
+0N
+bx +"
+bx )"
+bx ,"
+bx W
+bx e
+b11 7"
+bx O
+bx Y
+bx l
+bx '"
+1>
+#80000
+0>
+#90000
+b1011 7"
+1>
+#100000
+0>
+#110000
+1>
+#120000
+0>
+#130000
+1>
+#140000
+0>
+#150000
+1>
+#160000
+0>
+#170000
+1>
+#180000
+0>
+#190000
+1>
+#200000
+0>
+#210000
+1>
+#220000
+0>
+#230000
+1>
+#240000
+0>
+#250000
+1>
+#260000
+0>
+#270000
+1>
+#280000
+0>
+#290000
+1>
+#300000
+0>
+#310000
+1>
+#320000
+0>
+#330000
+1>
+#340000
+0>
+#350000
+1>
+#360000
+0>
+#370000
+1>
+#380000
+0>
+#390000
+1>
+#400000
+0>
+#410000
+1>
+#420000
+0>
+#430000
+1>
+#440000
+0>
+#450000
+1>
+#460000
+0>
+#470000
+1>
+#480000
+0>
+#490000
+1>
+#500000
+0>
+#510000
+1>
+#520000
+0>
+#530000
+1>
+#540000
+0>
+#550000
+1>
+#560000
+0>
+#570000
+1>
+#580000
+0>
+#590000
+1>
+#600000
+0>
+#610000
+1>
+#620000
+0>
+#630000
+1>
+#640000
+0>
+#650000
+1>
+#660000
+0>
+#670000
+1>
+#680000
+0>
+#690000
+1>
+#700000
+0>
+#710000
+1>
+#720000
+0>
+#730000
+1>
+#740000
+0>
+#750000
+1>
+#760000
+0>
+#770000
+1>
+#780000
+0>
+#790000
+1>
+#800000
+0>
+#810000
+1>
+#820000
+0>
+#830000
+1>
+#840000
+0>
+#850000
+1>
+#860000
+0>
+#870000
+1>
+#880000
+0>
+#890000
+1>
+#900000
+0>
+#910000
+1>
+#920000
+0>
+#930000
+1>
+#940000
+0>
+#950000
+1>
+#960000
+0>
+#970000
+1>
+#980000
+0>
+#990000
+1>
+#1000000
+0>
+#1010000
+1>
+#1020000
+0>
+#1030000
+1>
+#1040000
+0>
+#1050000
+1>
+#1060000
+0>
+#1070000
+1>
+#1080000
+0>
+#1090000
+1>
+#1100000
+0>
+#1110000
+1>
+#1120000
+0>
+#1130000
+1>
+#1140000
+0>
+#1150000
+1>
+#1160000
+0>
+#1170000
+1>
+#1180000
+0>
+#1190000
+1>
+#1200000
+0>
+#1210000
+1>
+#1220000
+0>
+#1230000
+1>
+#1240000
+0>
+#1250000
+1>
+#1260000
+0>
+#1270000
+1>
+#1280000
+0>
+#1290000
+1>
+#1300000
+0>
+#1310000
+1>
+#1320000
+0>
+#1330000
+1>
+#1340000
+0>
+#1350000
+1>
+#1360000
+0>
+#1370000
+1>
+#1380000
+0>
+#1390000
+1>
+#1400000
+0>
+#1410000
+1>
+#1420000
+0>
+#1430000
+1>
+#1440000
+0>
+#1450000
+1>
+#1460000
+0>
+#1470000
+1>
+#1480000
+0>
+#1490000
+1>
+#1500000
+0>
+#1510000
+1>
+#1520000
+0>
+#1530000
+1>
+#1540000
+0>
+#1550000
+1>
+#1560000
+0>
+#1570000
+1>
+#1580000
+0>
+#1590000
+1>
+#1600000
+0>
+#1610000
+1>
+#1620000
+0>
+#1630000
+1>
+#1640000
+0>
+#1650000
+1>
+#1660000
+0>
+#1670000
+1>
+#1680000
+0>
+#1690000
+1>
+#1700000
+0>
+#1710000
+1>
+#1720000
+0>
+#1730000
+1>
+#1740000
+0>
+#1750000
+1>
+#1760000
+0>
+#1770000
+1>
+#1780000
+0>
+#1790000
+1>
+#1800000
+0>
+#1810000
+1>
+#1820000
+0>
+#1830000
+1>
+#1840000
+0>
+#1850000
+1>
+#1860000
+0>
+#1870000
+1>
+#1880000
+0>
+#1890000
+1>
+#1900000
+0>
+#1910000
+1>
+#1920000
+0>
+#1930000
+1>
+#1940000
+0>
+#1950000
+1>
+#1960000
+0>
+#1970000
+1>
+#1980000
+0>
+#1990000
+1>
+#2000000
+0>
+#2010000
+1>
+#2020000
+0>
+#2030000
+1>
+#2040000
+0>
+#2050000
+1>
+#2060000
+0>
+#2070000
+1>
+#2080000
+0>
+#2090000
+1>
+#2100000
+0>
+#2110000
+1>
+#2120000
+0>
+#2130000
+1>
+#2140000
+0>
+#2150000
+1>
+#2160000
+0>
+#2170000
+1>
+#2180000
+0>
+#2190000
+1>
+#2200000
+0>
+#2210000
+1>
+#2220000
+0>
+#2230000
+1>
+#2240000
+0>
+#2250000
+1>
+#2260000
+0>
+#2270000
+1>
+#2280000
+0>
+#2290000
+1>
+#2300000
+0>
+#2310000
+1>
+#2320000
+0>
+#2330000
+1>
+#2340000
+0>
+#2350000
+1>
+#2360000
+0>
+#2370000
+1>
+#2380000
+0>
+#2390000
+1>
+#2400000
+0>
+#2410000
+1>
+#2420000
+0>
+#2430000
+1>
+#2440000
+0>
+#2450000
+1>
+#2460000
+0>
+#2470000
+1>
+#2480000
+0>
+#2490000
+1>
+#2500000
+0>
+#2510000
+1>
+#2520000
+0>
+#2530000
+1>
+#2540000
+0>
+#2550000
+1>
+#2560000
+0>
+#2570000
+1>
+#2580000
+0>
+#2590000
+1>
+#2600000
+0>
+#2610000
+1>
+#2620000
+0>
+#2630000
+1>
+#2640000
+0>
+#2650000
+1>
+#2660000
+0>
+#2670000
+1>
+#2680000
+0>
+#2690000
+1>
+#2700000
+0>
+#2710000
+1>
+#2720000
+0>
+#2730000
+1>
+#2740000
+0>
+#2750000
+1>
+#2760000
+0>
+#2770000
+1>
+#2780000
+0>
+#2790000
+1>
+#2800000
+0>

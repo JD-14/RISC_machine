@@ -5,10 +5,10 @@ module RISC_SPM #(parameter word_size=8, sel1_size=3, sel2_size=2)
 		wire [sel1_size-1: 0] sel_bus_1_mux;
 		wire [sel2_size-1: 0] Sel_bus_2_mux;
 		wire zero;
-		wire [word_size-1; 0] instruction, address, bus_1, mem_word;
+		wire [word_size-1: 0] instruction, address, bus_1, mem_word;
 		
 		//Control Nets
-		wire load_R0, load_R1, load_R2, load_R3, load_PC. inc_PC, load_IR,
+		wire load_R0, load_R1, load_R2, load_R3, load_PC, inc_PC, load_IR,
 		     load_add_R, load_Reg_Y, load_Reg_Z, write;
 		
 		Processing_Unit M0_Processor (instruction, address, bus_1, zero, mem_word,
@@ -37,7 +37,7 @@ module Processing_Unit #(parameter word_size=8, op_size=4, sel1_size=3, sel2_siz
 	 input [word_size-1: 0] mem_word,
 	 input load_R0, load_R1, load_R2, load_R3, load_PC, inc_PC,
 	 input [sel1_size-1: 0] sel_bus_1_mux,
-	 input (sel1_size-1: 0] Sel_bus_2_mux,
+	 input [sel2_size-1: 0] sel_bus_2_mux,
 	 input load_IR, load_add_R, load_Reg_Y, load_Reg_Z, 
 	 input clk, rst);
 	
@@ -54,17 +54,18 @@ module Processing_Unit #(parameter word_size=8, op_size=4, sel1_size=3, sel2_siz
 	Register_Unit        Reg_Y (Y_value, bus_2, load_Reg_Y, clk, rst);
 	D_flop               Reg_Z (zflag, alu_zero_flag, load_Reg_Z, clk, rst);
 	Address_Register     Add_R (address, bus_2, load_add_R, clk, rst);
-	Instruction_Register IR    (instruction, bus_2, load_PC, inc_PC, clk rst);
+	Instruction_Register IR    (instruction, bus_2, load_IR, clk, rst);
 	Program_Counter      PC    (PC_count, bus_2, load_pc, inc_pc, clk, rst);
-	Multiplexer_5ch      Mux_1 (bus_1, R0_out, R1_out, R2_out, R3_out, PC_count);
-	Multiplexer_3ch      Mux_2 (bus_2, alu_out, bus_1, mem_word, sel_bus_2_muX);
+	Multiplexer_5ch      Mux_1 (bus_1, R0_out, R1_out, R2_out, R3_out, PC_count,
+				     sel_bus_1_mux);
+	Multiplexer_3ch      Mux_2 (bus_2, alu_out, bus_1, mem_word, sel_bus_2_mux);
 	Alu_RISC             ALU   (alu_out, alu_zero_flag, Y_value, bus_1, opcode);
 endmodule
 
 
 
 module Register_Unit #(parameter word_size = 8)
-	(output reg (word_size-1: 0] data_out,
+	(output reg [word_size-1: 0] data_out,
 	 input [word_size-1: 0] data_in,
 	 input load, clk, rst);
 	
@@ -97,19 +98,19 @@ endmodule
 
 
 
-module Instruction_Reglsler #(parameter word_size=8)
+module Instruction_Register #(parameter word_size=8)
 	(output reg [word_size-1: 0] data_out,
 	 input [word_size-1: 0] data_in,
 	 input load, clk, rst);
 	
 	always @ (posedge clk, negedge rst)
 	   if (rst == 1'b0) data_out <= 0;
-	   else if (load == 'b1) data_out <= data_ in;
+	   else if (load == 1'b1) data_out <= data_in;
 endmodule
 
 
 
-module Program_Counter #(parameter word_size=6)
+module Program_Counter #(parameter word_size=8)
 	(output reg [word_size-1: 0] count,
 	 input [word_size-1: 0] data_in,
 	 input load_PC, inc_PC,
@@ -147,7 +148,7 @@ module Multiplexer_3ch #(parameter word_size=8)
 	 			     ? data_c : 'bx;
 endmodule
 
-module A1u_RISC #(parameter word_size=8, op_size=4,
+module Alu_RISC #(parameter word_size=8, op_size=4,
 	//Opcodes
 	NOP = 4'b0000,
 	ADD = 4'b0001,
@@ -165,12 +166,12 @@ module A1u_RISC #(parameter word_size=8, op_size=4,
 	 input [op_size-1: 0] sel);
 	
 	assign alu_zero_flag = ~|alu_out;	//unsure if NOR
-	always @(sel, dala_1, data_2)
+	always @(sel, data_1, data_2)
 	   case (sel)
 	   	 NOP: alu_out = 0;
 	   	 ADD: alu_out = data_1 + data_2; // Reg_Y + Bus_1
 	   	 SUB: alu_out = data_2 - data_1;
-	   	 AND: alu_oul = data_1 & data_2;
+	   	 AND: alu_out = data_1 & data_2;
 	   	 NOT: alu_out = ~data_2;
 	   	 default: alu_out = 0;
 	   endcase
@@ -182,8 +183,8 @@ module Control_Unit #(parameter word_size=8, op_size=4, state_size=4,
 		       src_size=2, dest_size=2, sel1_size=3, sel2_size=2)
 	(output [sel2_size-1: 0] sel_bus_2_mux,
 	 output [sel1_size-1: 0] sel_bus_1_mux,
-	 output reg load_RO, load_R1, load_R2, load_R3,load_PC, inc_PC,
-	            load_IR, load_add_R, load_Reg_Y, load_Reg_Z. write,
+	 output reg load_R0, load_R1, load_R2, load_R3,load_PC, inc_PC,
+	            load_IR, load_add_R, load_Reg_Y, load_Reg_Z, write,
 	 input [word_size-1: 0] instruction,
 	 input zero, clk, rst);
 	
@@ -198,7 +199,7 @@ module Control_Unit #(parameter word_size=8, op_size=4, state_size=4,
 	  parameter R0=0, R1=1, R2=2, R3=3;
 	  
 	  reg [state_size-1: 0] state, next_state;
-	  reg sel_ALU, sel_bus_1, sel_Mem;
+	  reg sel_ALU, sel_bus_1, sel_mem;
 	  reg sel_R0, sel_R1, sel_R2, sel_R3, sel_PC;
 	  reg err_flag;
 	  wire [op_size-1: 0] opcode = instruction [word_size-1: word_size - op_size];
@@ -210,13 +211,169 @@ module Control_Unit #(parameter word_size=8, op_size=4, state_size=4,
 	  					   sel_R1 ? 1:
 	  					   sel_R2 ? 2:
 	  					   sel_R3 ? 3:
-	  					   Sel_PC ? 4: 3'bx; // 3-bits, sized number
+	  					   sel_PC ? 4: 3'bx; // 3-bits, sized number
 	  
 	  always @(posedge clk, negedge rst) begin: state_transitions
 	     if (rst == 0) state <= s_idle; 
 	     else state <= next_state; 
 	     end 
 	 
+	 always @ (state, opcode, src, dest, zero) begin: output_and_next_state
+	    sel_R0=0; sel_R1=0; sel_R2=0; sel_R3=0; sel_PC=0;
+	    load_R0=0; load_R1=0; load_R2=0; load_R3=0; load_PC=0;
+	    load_IR=0; load_add_R=0; load_Reg_Y=0; load_Reg_Z=0;
+	    inc_PC=0;
+	    sel_bus_1=0;
+	    sel_ALU=0;
+	    sel_mem=0;
+	    write=0;
+	    err_flag=0;  //Used for de-bug in simulation
+	    next_state=state;
+	       case (state)   s_idle: next_state = s_fet1;
+	                      s_fet1: begin
+	                                next_state = s_fet2;
+	                                sel_PC = 1;
+	                                sel_bus_1 = 1;
+	                                load_add_R = 1;
+	                              end
+	                      s_fet2: begin
+	                                next_state = s_dec;
+	                                sel_mem = 1;
+	                                load_IR = 1;
+	                                inc_PC = 1;
+	                              end
+	                      s_dec:   case (opcode)
+	                                   NOP: next_state = s_fet1;
+	                                   ADD, SUB, AND: begin
+	                                      next_state = s_ex1;
+	                                      sel_bus_1 = 1;
+	                                      load_Reg_Y = 1;
+	                                      case (src)
+	                                           R0: sel_R0 = 1;
+	                                           R1: sel_R1 = 1;
+	                                           R2: sel_R2 = 1;
+	                                           R3: sel_R3 = 1;
+	                                           default: err_flag = 1;
+	                                      endcase
+	                                      end //ADD, SUB, AND
+	                                   NOT: begin
+	                                        next_state = s_fet1;
+	                                        load_Reg_Z = 1;
+	                                        sel_ALU = 1;
+	                                        case (src)
+	                                           R0: sel_R0 = 1;
+	                                           R1: sel_R1 = 1;
+	                                           R2: sel_R2 = 1;
+	                                           R3: sel_R3 = 1;
+	                                           default: err_flag = 1;
+	                                        endcase
+	                                        case (dest)
+	                                           R0: load_R0 = 1;
+	                                           R1: load_R1 = 1;
+	                                           R2: load_R2 = 1;
+	                                           R3: load_R3 = 1;
+	                                           default: err_flag = 1;
+	                                        endcase
+	                                        end //NOT
+	                                   RD: begin    
+	                                       next_state = s_rd1;
+	                                       sel_PC = 1; sel_bus_1 = 1; load_add_R = 1;
+	                                       end //RD
+	                                   WR: begin
+	                                       next_state = s_wr1;
+	                                       sel_PC = 1; sel_bus_1 = 1; load_add_R = 1;
+	                                       end //WR
+	                                   BR: begin
+	                                       next_state = s_br1;
+	                                       sel_PC = 1; sel_bus_1 = 1; load_add_R = 1;
+	                                       end //WR
+	                                   BRZ: if (zero == 1) begin
+	                                        next_state = s_br1;
+	                                        sel_PC = 1; sel_bus_1 = 1; load_add_R = 1;
+	                                        end //BRZ
+	                                   else begin
+	                                        next_state = s_fet1;
+	                                        inc_PC = 1;
+	                                        end
+	                                   default: next_state = s_halt;
+	                              endcase //(opcode)
+	                    s_ex1:    begin
+	                              next_state = s_fet1;
+	                              load_Reg_Z = 1;
+	                              sel_ALU = 1;
+	                              case (dest)
+	                                   R0: begin sel_R0 = 1; load_R0 = 1; end
+	                                   R1: begin sel_R1 = 1; load_R1 = 1; end
+	                                   R2: begin sel_R2 = 1; load_R2 = 1; end
+	                                   R3: begin sel_R3 = 1; load_R3 = 1; end
+	                                   default: err_flag = 1;
+	                              endcase
+	                              end
+	                    s_rd1:    begin
+	                              next_state = s_rd2;
+	                              sel_mem = 1;
+	                              load_add_R = 1;
+	                              inc_PC = 1;
+	                              end
+	                    s_wr1:    begin
+	                              next_state = s_wr2;
+	                              sel_mem = 1;
+	                              load_add_R = 1;
+	                              inc_PC = 1;
+	                              end
+	                    s_rd2:    begin
+	                              next_state = s_fet1;
+	                              sel_mem = 1;
+	                              case (dest)
+	                                   R0: load_R0 = 1;
+	                                   R1: load_R1 = 1;
+	                                   R2: load_R2 = 1;
+	                                   R3: load_R3 = 1;
+	                                   default: err_flag = 1;
+	                              endcase
+	                              end
+	                    s_wr2:    begin
+	                              next_state = s_fet1;
+	                              write = 1;
+	                              case (src)
+	                                   R0: sel_R0 = 1;
+	                                   R1: sel_R1 = 1;
+	                                   R2: sel_R2 = 1;
+	                                   R3: sel_R3 = 1;
+	                                   default: err_flag = 1;
+	                              endcase
+	                              end
+	                    s_br1:    begin
+	                              next_state = s_br2; sel_mem = 1;
+	                              load_add_R = 1;
+	                              end
+	                    s_br2:    begin
+	                              next_state = s_fet1; sel_mem = 1;
+	                              load_PC = 1;
+	                              end
+	                    s_halt:   next_state = s_halt;
+	                    default:  next_state = s_idle;
+	       endcase
+	    end
+endmodule
+
+
+
+module Memory_Unit #(parameter word_size=8, memory_size=256)
+       (output [word_size-1: 0] data_out,
+        input [word_size-1: 0] data_in,
+        input [word_size-1: 0] address,
+        input clk, write);
+        
+        reg [word_size-1: 0] memory [memory_size-1: 0];
+        
+        assign data_out = memory[address];
+        always @(posedge clk)
+           if (write) memory[address] <= data_in;
+endmodule         
+	                                 
+	                                   
+	    
 
 
 

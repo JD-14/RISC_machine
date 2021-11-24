@@ -1,4 +1,4 @@
--e rtl:
+rtl:
 	rm -rf bin/
 	mkdir bin
 	iverilog -o bin/RISC_SPM.vvp test/tb_RISC_SPM.v src/RISC_SPM.v
